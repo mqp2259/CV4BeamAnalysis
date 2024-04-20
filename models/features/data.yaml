@@ -1,0 +1,26 @@
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: ../../data/features  # dataset root dir
+train: train/images  # train images (relative to 'path') 128 images
+val: val/images  # val images (relative to 'path') 128 images
+test:  test/images # test images (optional)
+
+nc: 17
+# Classes (80 COCO classes)
+names:
+  0: fix
+  1: pin
+  2: roller
+  3: beam
+  4: number
+  5: length
+  6: none
+  7: cw_couple
+  8: ccw_couple
+  9: r_pload
+  10: l_pload
+  11: u_pload
+  12: d_pload
+  13: r_dload
+  14: l_dload
+  15: u_dload
+  16: d_dload

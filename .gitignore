@@ -1,0 +1,11 @@
+# no pycaches in any folder
+**/__pycache__/
+
+# no virtual environment
+env/
+
+# no data from previous executions
+runs/
+
+# no temporary images
+temp.png

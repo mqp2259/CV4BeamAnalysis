@@ -36,6 +36,19 @@ python3 relationships.py --mode create --source data/relationships/preprocessed/
 
 ## Citation
 
-Paper is pending, so for now no citation is required when using this work. In the future, the proper citation will be pasted below.
-
-`Citation.`
+```
+@article{joffe2024cv,
+    AUTHOR = {Joffe, Isaac and Qian, Yuchen and Talebi-Kalaleh, Mohammad and Mei, Qipei},
+    TITLE = {A Computer Vision Framework for Structural Analysis of Hand-Drawn Engineering Sketches},
+    JOURNAL = {Sensors},
+    VOLUME = {24},
+    YEAR = {2024},
+    NUMBER = {9},
+    ARTICLE-NUMBER = {2923},
+    URL = {https://www.mdpi.com/1424-8220/24/9/2923},
+    PubMedID = {38733029},
+    ISSN = {1424-8220},
+    ABSTRACT = {Structural engineers are often required to draw two-dimensional engineering sketches for quick structural analysis, either by hand calculation or using analysis software. However, calculation by hand is slow and error-prone, and the manual conversion of a hand-drawn sketch into a virtual model is tedious and time-consuming. This paper presents a complete and autonomous framework for converting a hand-drawn engineering sketch into an analyzed structural model using a camera and computer vision. In this framework, a computer vision object detection stage initially extracts information about the raw features in the image of the beam diagram. Next, a computer vision number-reading model transcribes any handwritten numerals appearing in the image. Then, feature association models are applied to characterize the relationships among the detected features in order to build a comprehensive structural model. Finally, the structural model generated is analyzed using OpenSees. In the system presented, the object detection model achieves a mean average precision of 99.1%, the number-reading model achieves an accuracy of 99.0%, and the models in the feature association stage achieve accuracies ranging from 95.1% to 99.5%. Overall, the tool analyzes 45.0% of images entirely correctly and the remaining 55.0% of images partially correctly. The proposed framework holds promise for other types of structural sketches, such as trusses and frames. Moreover, it can be a valuable tool for structural engineers that is capable of improving the efficiency, safety, and sustainability of future construction projects.},
+    DOI = {10.3390/s24092923}
+}
+```

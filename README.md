@@ -1,4 +1,4 @@
-# Beam-Analysis
+# Computer Vision for Beam Analysis
 
 This repository contains the code for an AI-based system capable of recognizing and analyzing handwritten sketches of engineering beam diagrams.
 

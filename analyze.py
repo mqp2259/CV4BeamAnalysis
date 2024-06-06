@@ -292,89 +292,42 @@ Function to display and save files of diagrams of analyzed models.
 """
 def visualize(max_length, save_dir):
     max_length /= 10    # scale down lengths for proper plotting of values
-    # save_dir = increment_path(Path('runs/analyze/exp'))     # make new directory in same fashion as the YOLO model
-    # save_dir.mkdir(parents=True, exist_ok=True)
 
-    printModel('-file', save_dir / 'info.txt')    # store basic information about the model
-
-    # opsv.plot_model()    # basic diagram of structural model
-    # plt.title('Visualization of Model Structure')
-    # plt.savefig(str(save_dir / 'structure.png'))
-
-    # opsv.plot_loads_2d()    # diagram of structural diagram with applied loads drawn on
-    # plt.title('Visualization of Model Structure Under the Applied Loads')
-    # plt.savefig(str(save_dir / 'loads.png'))
-
-    # opsv.plot_defo()    # plot deformed shape of the model after loads have been applied
-    # plt.title('Visualization of Model Deformation due to Applied Loads')
-    # plt.savefig(str(save_dir / 'deformation.png'))
-
-    # max_value = opsv.section_force_diagram_2d('N')    # obtain the maximum value for the last member as a guideline
-    # sfacN = max_length / max_value[1] if max_value[1] != 0 else 0.001    # scale plots appropriately
-    # plt.close()
-    # opsv.section_force_diagram_2d('N', sfacN)   # plot axial force diagram of the model
-    # plt.title('Axial Force Distribution')
-    # plt.savefig(str(save_dir / 'afd.png'))
-
-    # max_value = opsv.section_force_diagram_2d('T')    # obtain the maximum value for the last member as a guideline
-    # sfacT = max_length / max_value[1] if max_value[1] != 0 else 0.001    # scale plots appropriately
-    # plt.close()
-    # opsv.section_force_diagram_2d('T', sfacT)   # plot shear force diagram of the model
-    # plt.title('Shear Force Distribution')
-    # plt.savefig(str(save_dir / 'sfd.png'))
-
-    # max_value = opsv.section_force_diagram_2d('M')    # obtain the maximum value for the last member as a guideline
-    # sfacM = max_length / max_value[1] if max_value[1] != 0 else 0.001    # scale plots appropriately
-    # plt.close()
-    # opsv.section_force_diagram_2d('M', sfacM)   # plot bending moment diagram of the model
-    # plt.title('Bending Moment Distribution')
-    # plt.savefig(str(save_dir / 'bmd.png'))
+    printModel('-file', save_dir + "/info.txt")    # store basic information about the model
 
     max_value = opsv.section_force_diagram_2d('M')    # obtain the maximum value for the last member as a guideline
     sfacM = max_length / max_value[1] if max_value[1] != 0 else 0.001    # scale plots appropriately
     plt.close()
     opsv.section_force_diagram_2d('M', sfacM)   # plot bending moment diagram of the model
     plt.title('Bending Moment Distribution')
-    plt.savefig(save_dir / "bmd.png")
+    plt.savefig(save_dir + "/bmd.png")
 
     max_value = opsv.section_force_diagram_2d('T')    # obtain the maximum value for the last member as a guideline
     sfacT = max_length / max_value[1] if max_value[1] != 0 else 0.001    # scale plots appropriately
     plt.close()
     opsv.section_force_diagram_2d('T', sfacT)   # plot shear force diagram of the model
     plt.title('Shear Force Distribution')
-    plt.savefig(save_dir / "sfd.png")
+    plt.savefig(save_dir + "/sfd.png")
 
     max_value = opsv.section_force_diagram_2d('N')    # obtain the maximum value for the last member as a guideline
     sfacN = max_length / max_value[1] if max_value[1] != 0 else 0.001    # scale plots appropriately
     plt.close()
     opsv.section_force_diagram_2d('N', sfacN)   # plot axial force diagram of the model
     plt.title('Axial Force Distribution')
-    plt.savefig(save_dir / "afd.png")
+    plt.savefig(save_dir + "/afd.png")
 
     opsv.plot_defo()    # plot deformed shape of the model after loads have been applied
     plt.title('Visualization of Model Deformation due to Applied Loads')
-    plt.savefig(save_dir / "deformation.png")
+    plt.savefig(save_dir + "/deformation.png")
 
     opsv.plot_loads_2d()    # diagram of structural diagram with applied loads drawn on
     plt.title('Visualization of Model Structure Under the Applied Loads')
-    plt.savefig(save_dir / "loads.png")
+    plt.savefig(save_dir + "/loads.png")
 
     opsv.plot_model()    # basic diagram of structural model
     plt.title('Visualization of Model Structure')
-    plt.savefig(save_dir / "structure.png")
+    plt.savefig(save_dir + "/structure.png")
 
-    # start_x, start_y, dx, dy = (0, 0, 640, 550)
-    # for i in range(6):
-    #     if i % 3 == 0:
-    #         x = start_x
-    #         y = start_y  + (dy * (i//3) )
-    #     plt.figure()
-    #     mngr = plt.get_current_fig_manager()
-    #     mngr.window.setGeometry(x, y, dx, dy)
-    #     x += dx
-    
-    # plt.show()    # display GUI with diagrams
-    # print(f"Plots saved to {save_dir}")
     return
 
 

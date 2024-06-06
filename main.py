@@ -32,7 +32,7 @@ def main():
     c_time = time.time()
 
     print("\nExtracting image features...\n")
-    image_features = yolo.run(options.image_name[0], options.features_path[0])
+    image_features = yolo.run_features(options.image_name[0], options.features_path[0])
     print(f"\nDone. {time.time() - c_time} seconds.\n")
     c_time = time.time()
 
@@ -75,7 +75,7 @@ def main():
         analyze.analyze_beam(detected_beams[i], image_features, golden_gn_model, golden_el_model, golden_ls_model, f"{save_dir}/{i}")
     print(f"\nDone. {time.time() - c_time} seconds.\n")
 
-    print(f"\nAnalysis plots saved to directory runs/{save_dir}.\n")
+    print(f"\nAnalysis plots saved to directory {save_dir}.\n")
     return
 
 

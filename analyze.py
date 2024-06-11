@@ -4,6 +4,8 @@ from openseespy.opensees import *    # for structural analysis
 import opsvis as opsv    # for visualization of analysis
 import matplotlib.pyplot as plt    # for displaying diagrams
 from pathlib import Path    # for saving results to new directories, YOLO-style
+import cv2
+import numpy as np
 
 import beam
 import relationships
@@ -310,6 +312,18 @@ def visualize(max_length, save_dir):
     opsv.plot_model()    # basic diagram of structural model
     plt.title('Visualization of Model Structure')
     plt.savefig(save_dir + "/structure.png")
+
+    filenames = ["structure.png", "loads.png", "deformation.png", "afd.png", "sfd.png", "bmd.png"]
+    images = [cv2.imread(save_dir + "/" + filename, cv2.IMREAD_UNCHANGED) for filename in filenames]
+    upper_row = np.hstack(images[:3])    # concatenate visualization images into a row
+    lower_row = np.hstack(images[3:])    # concatenate analysis diagram into a row
+    concat = np.vstack((upper_row, lower_row))    # combine all diagrams into one 3 by 2 grid
+    cv2.imwrite(save_dir + "/all.png", concat)
+
+    # display this combined output using matplotlib
+    plt.axis('off')
+    plt.imshow(concat)
+    plt.show()
 
     return
 

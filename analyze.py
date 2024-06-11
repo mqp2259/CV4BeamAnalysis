@@ -3,9 +3,7 @@
 from openseespy.opensees import *    # for structural analysis
 import opsvis as opsv    # for visualization of analysis
 import matplotlib.pyplot as plt    # for displaying diagrams
-import matplotlib
 from pathlib import Path    # for saving results to new directories, YOLO-style
-# from utils.general import increment_path    # for saving results to new directories, YOLO-style
 
 import beam
 import relationships
@@ -149,15 +147,15 @@ def create_model(beam_system, features, gn_golden, el_golden, ls_golden):
 
         else:    # this element has an associated length, so it exists
             number = []    # information of associated length number value
-            number_conf = 0    # confidence in this value
-            for element1 in features:
-                if element1[-1] == 4:    # number
+            number_conf = -1000000    # confidence in this value
+            for element2 in features:
+                if element2[-1] == 4:    # number
                     # add coordinates of length and number for input to the perceptron
                     instance = []
                     for j in range(4):
                         instance.append(length[j])
                     for j in range(4):
-                        instance.append(element1[j])
+                        instance.append(element2[j])
                     # preprocess input into the required format for the model input
                     xmin = min(instance[0], instance[2], instance[4], instance[6])
                     xmax = max(instance[0], instance[2], instance[4], instance[6])
@@ -171,17 +169,17 @@ def create_model(beam_system, features, gn_golden, el_golden, ls_golden):
                     # find the likelihood that this current number is associated with this length
                     if relationships.test_single_instance(gn_golden, instance) > number_conf:    # must be the most likely number to be stored
                         number_conf = relationships.test_single_instance(gn_golden, instance)    # new confidence to beat
-                        number = element1
+                        number = element2
 
             node_mapping[i][0] = number[-2]    # magnitude of length is stored in the second-to-last location of the number from the reader
 
     node_mapping[0][0] = 0    # first node is set at origin by convention
     # check if lengths are drawn separately for each element, not overlapping
     instance = []
-    for element1 in features:
-        if element1[-1] == 5:    # length
+    for element3 in features:
+        if element3[-1] == 5:    # length
             for i in range(4):
-                instance.append(element1[i])    # add coordinates of each length in any order
+                instance.append(element3[i])    # add coordinates of each length in any order
     while len(instance) < 20:
         instance.append(0)    # pad with zeroes as is convention for the model
     while len(instance) > 20:
@@ -203,21 +201,6 @@ def create_model(beam_system, features, gn_golden, el_golden, ls_golden):
     if not beam_system.get_orientation():
         for i in range(len(node_mapping)):
             node_mapping[i][0] = node_mapping[-1][0] - node_mapping[i][0]
-
-    ############################################################################################
-    # max_length = 0
-    # max_load = 0
-    # for i in range(len(node_mapping)):
-    #     if node_mapping[i][0] > max_length:
-    #         max_length = node_mapping[i][0]
-    #     if node_mapping[i][4] is not None and node_mapping[i][4].get_magnitude() > max_load:
-    #         max_load = node_mapping[i][4].get_magnitude()
-    # sfac = (max_length / max_load) * 0.001
-    # global sfacN; sfacN = sfac
-    # global sfacV; sfacV = sfac
-    # global sfacM; sfacM = sfac / 100
-    ############################################################################################
-    # print(node_mapping)
 
     # create nodes representing the beam in the structural model
     centre = 0    # the middle coordinate of the beam on its short axis, assumed everything acts through this coordinate
@@ -265,7 +248,7 @@ def create_model(beam_system, features, gn_golden, el_golden, ls_golden):
                     eleLoad('-ele', k, '-type', '-beamUniform', node_mapping[i][4].get_y_force(), 0)    # apply forces over elements
                 else:
                     eleLoad('-ele', k, '-type', '-beamUniform', node_mapping[i][4].get_x_force(), 0)    # apply forces over elements
-    
+
     return node_mapping[-1][0]
 
 

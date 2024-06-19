@@ -34,7 +34,13 @@ To train a new MLP, ensure the number of parameters is set in the `relationships
 python3 relationships.py --mode create --source data/relationships/preprocessed/<FILE> --preprocess no --epochs 30 --name models/relationships/<NAME>
 ```
 
+## Application
+
+This software is accessible as a web application on [MecSimCalc](https://mecsimcalc.com/), a cloud computing platform developed at the University of Alberta. With [this application](https://mecsimcalc.com/app/8307937/computer_vision_for_beam_analysis), registered users can receive automatic analysis of their handwritten beam diagrams from anywhere at anytime.
+
 ## Citation
+
+When using this software, please cite this paper:
 
 ```
 @article{joffe2024cv,

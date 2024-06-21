@@ -36,7 +36,7 @@ python3 relationships.py --mode create --source data/relationships/preprocessed/
 
 ## Application
 
-This software is accessible as a web application on [MecSimCalc](https://mecsimcalc.com/), a cloud computing platform developed at the University of Alberta. With [this application](https://mecsimcalc.com/app/8307937/computer_vision_for_beam_analysis), registered users can receive automatic analysis of their handwritten beam diagrams from anywhere at anytime.
+This software is accessible as a web application on [MecSimCalc](https://mecsimcalc.com/), a cloud computing platform developed at the University of Alberta, thanks to the work of Malcolm Kamgang. With [this application](https://mecsimcalc.com/app/8307937/computer_vision_for_beam_analysis), registered users can receive automatic analysis of their handwritten beam diagrams from anywhere, at any time.
 
 ## Citation
 
